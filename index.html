@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Mich ❤️</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+
+            overflow: hidden;
+
+            background: #120008;
+
+            font-family: Arial, sans-serif;
+
+            color: white;
+        }
+
+
+        /* -------------------------
+           CONTENIDO DEL CENTRO
+        ------------------------- */
+
+        .contenido {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            text-align: center;
+
+            z-index: 100;
+        }
+
+
+        h1 {
+            font-size: 45px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .corazon-grande {
+
+            font-size: 180px;
+
+            animation: latido 1.2s infinite;
+
+            filter:
+                drop-shadow(0 0 10px #ff1744)
+                drop-shadow(0 0 30px #ff1744)
+                drop-shadow(0 0 60px #ff1744);
+        }
+
+
+        .mensaje {
+
+            font-size: 24px;
+
+            margin-top: 25px;
+        }
+
+
+        .submensaje {
+
+            font-size: 17px;
+
+            margin-top: 15px;
+
+            opacity: 0.8;
+        }
+
+
+        /* -------------------------
+           CORAZONES PEQUEÑOS
+        ------------------------- */
+
+        .corazon {
+
+            position: fixed;
+
+            bottom: -50px;
+
+            color: #ff1744;
+
+            font-size: 25px;
+
+            z-index: 50;
+
+            pointer-events: none;
+
+            animation: subir linear forwards;
+
+            text-shadow:
+                0 0 5px #ff1744,
+                0 0 15px #ff1744,
+                0 0 25px #ff1744;
+        }
+
+
+        /* -------------------------
+           LATIDO
+        ------------------------- */
+
+        @keyframes latido {
+
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.2);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.12);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* -------------------------
+           CORAZONES SUBIENDO
+        ------------------------- */
+
+        @keyframes subir {
+
+            0% {
+
+                bottom: -50px;
+
+                transform:
+                    translateX(0)
+                    rotate(0deg)
+                    scale(0.5);
+
+                opacity: 0;
+            }
+
+
+            10% {
+
+                opacity: 1;
+            }
+
+
+            50% {
+
+                transform:
+                    translateX(60px)
+                    rotate(180deg)
+                    scale(1);
+            }
+
+
+            100% {
+
+                bottom: 110vh;
+
+                transform:
+                    translateX(-60px)
+                    rotate(360deg)
+                    scale(1.5);
+
+                opacity: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- CORAZONES PEQUEÑOS -->
+
+    <div id="corazones"></div>
+
+
+    <!-- CORAZÓN PRINCIPAL -->
+
+    <div class="contenido">
+
+        <h1>Para Mich ❤️</h1>
+
+        <div class="corazon-grande">
+            ❤️
+        </div>
+
+        <div class="mensaje">
+            Que tengas un maravilloso día ☺ 
+        </div>
+
+        <div class="submensaje">
+            Espero que te saque una sonrisa ❤️
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        function crearCorazon() {
+
+            // Crear elemento
+            const corazon = document.createElement("div");
+
+            corazon.className = "corazon";
+
+            // Corazón pequeño
+            corazon.innerHTML = "♥";
+
+
+            // Posición horizontal aleatoria
+            corazon.style.left =
+                Math.random() * 100 + "vw";
+
+
+            // Tamaño aleatorio
+            const tamaño =
+                Math.random() * 25 + 15;
+
+            corazon.style.fontSize =
+                tamaño + "px";
+
+
+            // Velocidad aleatoria
+            const velocidad =
+                Math.random() * 5 + 5;
+
+            corazon.style.animationDuration =
+                velocidad + "s";
+
+
+            // Añadir a la página
+            document
+                .getElementById("corazones")
+                .appendChild(corazon);
+
+
+            // Eliminar después de terminar
+            setTimeout(function() {
+
+                corazon.remove();
+
+            }, velocidad * 1000);
+
+        }
+
+
+        // Crear corazones cada 200 milisegundos
+        setInterval(crearCorazon, 200);
+
+
+    </script>
+
+
+</body>
+
+</html>
+
